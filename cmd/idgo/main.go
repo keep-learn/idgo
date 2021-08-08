@@ -56,6 +56,7 @@ func main() {
 	}
 
 	var s *server.Server
+	// inti 初始化相关操作 , db init  + tcp init
 	s, err = server.NewServer(cfg)
 	if err != nil {
 		golog.Error("main", "main", err.Error(), 0)
@@ -63,7 +64,7 @@ func main() {
 		s.Close()
 		return
 	}
-
+	// init 程序启动时, 做初始化
 	err = s.Init()
 	if err != nil {
 		golog.Error("main", "main", err.Error(), 0)
@@ -86,6 +87,7 @@ func main() {
 		s.Close()
 	}()
 	golog.Info("main", "main", "Idgo start!", 0)
+	// 服务启动
 	s.Serve()
 }
 
